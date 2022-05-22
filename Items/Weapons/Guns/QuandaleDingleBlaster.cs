@@ -3,6 +3,8 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 
+using WBFunnyMod.Items.Misc.CraftMaterials;
+
 namespace WBFunnyMod.Items.Weapons.Guns
 {
 
@@ -18,7 +20,7 @@ namespace WBFunnyMod.Items.Weapons.Guns
             item.Size = new Vector2(4,4);
 
             item.ranged = true;
-            item.damage = 60;
+            item.damage = 400;
             item.knockBack = 0f;
             item.crit = 4;
             item.noMelee = true;
@@ -49,6 +51,15 @@ namespace WBFunnyMod.Items.Weapons.Guns
             }
 
             return false;
+        }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<DirtBar>(), 1);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
 
     }

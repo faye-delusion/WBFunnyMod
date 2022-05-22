@@ -2,8 +2,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using WBFunnyMod.Projectiles;
 
+using WBFunnyMod.Projectiles;
+using WBFunnyMod.Items.Misc.CraftMaterials;
 namespace WBFunnyMod.Items.Weapons.Swords
 {
 	public class MorbiusSword : ModItem
@@ -21,7 +22,7 @@ namespace WBFunnyMod.Items.Weapons.Swords
 			item.melee = true;
 			item.autoReuse = true;
 
-			item.damage = 14;
+			item.damage = 2000;
 			item.knockBack = 3f;
 			item.crit = 4;
 
@@ -37,13 +38,13 @@ namespace WBFunnyMod.Items.Weapons.Swords
 			item.shootSpeed = 5f;
 		}
 
-		public override void AddRecipes() 
-		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.DirtBlock, 10);
-			recipe.AddTile(TileID.WorkBenches);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
-		}
+		public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<DirtBar>(), 1);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
 	}
 }
