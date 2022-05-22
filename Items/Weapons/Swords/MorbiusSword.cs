@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using WBFunnyMod.Projectiles;
 
 namespace WBFunnyMod.Items.Weapons.Swords
 {
@@ -31,6 +32,9 @@ namespace WBFunnyMod.Items.Weapons.Swords
 			
 			item.value = Item.buyPrice(silver: 50);
 			item.rare = ItemRarityID.Expert;
+
+			item.shoot = ModContent.ProjectileType<MorbiusProjectile>();
+			item.shootSpeed = 5f;
 		}
 
 		public override void AddRecipes() 

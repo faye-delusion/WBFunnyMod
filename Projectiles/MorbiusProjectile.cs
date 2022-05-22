@@ -17,8 +17,8 @@ namespace WBFunnyMod.Projectiles
 
         public override void SetDefaults()
         {
-            
-            projectile.arrow = true;
+            projectile.CloneDefaults(ProjectileID.WoodenArrowFriendly);
+            projectile.damage = 20;
             projectile.width = 10;
             projectile.height = 10;
             projectile.aiStyle = 1;
@@ -26,6 +26,16 @@ namespace WBFunnyMod.Projectiles
             projectile.ranged = true;
             aiType = ProjectileID.WoodenArrowFriendly;
 
+        }
+
+        public override bool Autoload(ref string name)
+        {
+            return true;
+        }
+
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            target.StrikeNPCNoInteraction(10, 0f, -target.direction);
         }
 
     }
