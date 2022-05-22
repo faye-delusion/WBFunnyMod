@@ -1,5 +1,7 @@
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Microsoft.Xna.Framework;
 
 namespace WBFunnyMod.Items.Weapons.Swords
 {
@@ -13,18 +15,22 @@ namespace WBFunnyMod.Items.Weapons.Swords
 
 		public override void SetDefaults() 
 		{
-			item.damage = 14;
+			item.Size = new Vector2(32,32);
+
 			item.melee = true;
-			item.width = 1600;
-			item.height = 1600;
+			item.autoReuse = true;
+
+			item.damage = 14;
+			item.knockBack = 3f;
+			item.crit = 4;
+
 			item.useTime = 15;
 			item.useAnimation = 15;
-			item.useStyle = 1;
-			item.knockBack = 10;
-			item.value = 10000;
-			item.rare = -12;
+			item.useStyle = ItemUseStyleID.SwingThrow;
 			item.UseSound = SoundID.Item1;
-			item.autoReuse = true;
+			
+			item.value = Item.buyPrice(silver: 50);
+			item.rare = ItemRarityID.Expert;
 		}
 
 		public override void AddRecipes() 
