@@ -1,7 +1,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace WBFunnyMod.Items
+namespace WBFunnyMod.Items.Weapons.Swords
 {
 	public class MorbiusSword : ModItem
 	{
