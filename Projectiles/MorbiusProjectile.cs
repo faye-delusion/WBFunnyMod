@@ -36,6 +36,7 @@ namespace WBFunnyMod.Projectiles
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             target.StrikeNPCNoInteraction(10, 0f, -target.direction);
+            target.AddBuff(BuffID.Bleeding, 5);
         }
 
     }
