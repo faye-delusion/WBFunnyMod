@@ -23,7 +23,7 @@ namespace WBFunnyMod.Items.Weapons.Guns
             item.Size = new Vector2(12,12);
 
             item.ranged = true;
-            item.damage = 200;
+            item.damage = 4000;
             item.knockBack = 0f;
             item.crit = 5;
             item.noMelee = true;

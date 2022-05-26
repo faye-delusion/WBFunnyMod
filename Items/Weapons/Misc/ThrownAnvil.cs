@@ -23,7 +23,7 @@ namespace WBFunnyMod.Items.Weapons.Misc
         public override void SetDefaults()
         {
             item.shootSpeed = 4f;
-            item.damage = 700;
+            item.damage = 20000;
             item.knockBack = 15f;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.useAnimation = 30;

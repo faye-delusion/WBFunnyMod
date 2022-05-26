@@ -20,7 +20,7 @@ namespace WBFunnyMod.Items.Weapons.Guns
             item.Size = new Vector2(4,4);
 
             item.ranged = true;
-            item.damage = 400;
+            item.damage = 1600;
             item.knockBack = 0f;
             item.crit = 4;
             item.noMelee = true;
@@ -36,6 +36,7 @@ namespace WBFunnyMod.Items.Weapons.Guns
             item.useAmmo = AmmoID.None;
 
             item.value = Item.buyPrice(gold: 10);
+            item.rare = ItemRarityID.Expert;
 
         }
 

@@ -22,7 +22,7 @@ namespace WBFunnyMod.Items.Weapons.Swords
 			item.melee = true;
 			item.autoReuse = true;
 
-			item.damage = 2000;
+			item.damage = 8000;
 			item.knockBack = 3f;
 			item.crit = 4;
 

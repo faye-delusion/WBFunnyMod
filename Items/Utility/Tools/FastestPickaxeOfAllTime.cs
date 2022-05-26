@@ -29,7 +29,7 @@ namespace WBFunnyMod.Items.Utility.Tools
             item.useTime = 0;
             item.useAnimation = 6;
 
-            item.pick = 200;
+            item.pick = 1000;
             item.autoReuse = true;
 
             item.value = Item.buyPrice(platinum: 10);
