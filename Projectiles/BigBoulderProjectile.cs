@@ -17,17 +17,17 @@ namespace WBFunnyMod.Projectiles
 
         public override void SetDefaults()
         {
-            projectile.CloneDefaults(ProjectileID.Boulder);
-            projectile.Size = new Vector2(128,128);
-            projectile.aiStyle = 1;
-            projectile.friendly = false;
-            projectile.ranged = true;
-            aiType = ProjectileID.Boulder;
-            projectile.penetrate = -1;
+            Projectile.CloneDefaults(ProjectileID.Boulder);
+            Projectile.Size = new Vector2(128,128);
+            Projectile.aiStyle = 1;
+            Projectile.friendly = false;
+            Projectile.DamageType = DamageClass.Ranged;
+            AIType = ProjectileID.Boulder;
+            Projectile.penetrate = -1;
 
         }
 
-        public override bool Autoload(ref string name)
+        public override bool IsLoadingEnabled(Mod mod)/* tModPorter Suggestion: If you return false for the purposes of manual loading, use the [Autoload(false)] attribute on your class instead */
         {
             return true;
         }

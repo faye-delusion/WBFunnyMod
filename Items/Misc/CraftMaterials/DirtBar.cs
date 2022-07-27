@@ -17,22 +17,21 @@ namespace WBFunnyMod.Items.Misc.CraftMaterials
 
         public override void SetDefaults()
         {
-            item.melee = true;
-            item.maxStack = 999;
-            item.Size = new Vector2(30,24);
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.noMelee = true;
-            item.autoReuse = true;
-            item.rare = ItemRarityID.Expert;
+            Item.DamageType = DamageClass.Melee/* tModPorter Suggestion: Consider MeleeNoSpeed for no attack speed scaling */;
+            Item.maxStack = 999;
+            Item.Size = new Vector2(30,24);
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.noMelee = true;
+            Item.autoReuse = true;
+            Item.rare = ItemRarityID.Expert;
         }
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
+            Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ItemID.DirtBlock, 50);
             recipe.AddTile(TileID.Furnaces);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            recipe.Register();
         }
 
     }

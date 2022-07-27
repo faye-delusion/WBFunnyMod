@@ -17,34 +17,33 @@ namespace WBFunnyMod.Items.Weapons.Swords
 
 		public override void SetDefaults() 
 		{
-			item.Size = new Vector2(32,32);
+			Item.Size = new Vector2(32,32);
 
-			item.melee = true;
-			item.autoReuse = true;
+			Item.DamageType = DamageClass.Melee/* tModPorter Suggestion: Consider MeleeNoSpeed for no attack speed scaling */;
+			Item.autoReuse = true;
 
-			item.damage = 8000;
-			item.knockBack = 3f;
-			item.crit = 4;
+			Item.damage = 8000;
+			Item.knockBack = 3f;
+			Item.crit = 4;
 
-			item.useTime = 15;
-			item.useAnimation = 15;
-			item.useStyle = ItemUseStyleID.SwingThrow;
-			item.UseSound = SoundID.Item1;
+			Item.useTime = 15;
+			Item.useAnimation = 15;
+			Item.useStyle = ItemUseStyleID.Swing;
+			Item.UseSound = SoundID.Item1;
 			
-			item.value = Item.buyPrice(silver: 50);
-			item.rare = ItemRarityID.Expert;
+			Item.value = Item.buyPrice(silver: 50);
+			Item.rare = ItemRarityID.Expert;
 
-			item.shoot = ModContent.ProjectileType<MorbiusProjectile>();
-			item.shootSpeed = 5f;
+			Item.shoot = ModContent.ProjectileType<MorbiusProjectile>();
+			Item.shootSpeed = 5f;
 		}
 
 		public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
+            Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ModContent.ItemType<DirtBar>(), 1);
             recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            recipe.Register();
         }
 	}
 }

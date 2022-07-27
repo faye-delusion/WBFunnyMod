@@ -20,33 +20,32 @@ namespace WBFunnyMod.Items.Utility.Tools
         public override void SetDefaults()
         {
             
-            item.Size = new Vector2(40,40);
+            Item.Size = new Vector2(40,40);
 
-            item.damage = 20;
-            item.knockBack = 6;
-            item.melee = true;
+            Item.damage = 20;
+            Item.knockBack = 6;
+            Item.DamageType = DamageClass.Melee/* tModPorter Suggestion: Consider MeleeNoSpeed for no attack speed scaling */;
 
-            item.useTime = 0;
-            item.useAnimation = 6;
+            Item.useTime = 0;
+            Item.useAnimation = 6;
 
-            item.pick = 1000;
-            item.autoReuse = true;
+            Item.pick = 1000;
+            Item.autoReuse = true;
 
-            item.value = Item.buyPrice(platinum: 10);
-            item.rare = ItemRarityID.Expert;
+            Item.value = Item.buyPrice(platinum: 10);
+            Item.rare = ItemRarityID.Expert;
 
-            item.UseSound = SoundID.Item1;
-            item.useStyle = ItemUseStyleID.SwingThrow;
+            Item.UseSound = SoundID.Item1;
+            Item.useStyle = ItemUseStyleID.Swing;
 
         }
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
+            Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ModContent.ItemType<DirtBar>(), 1);
             recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            recipe.Register();
         }
 
     }

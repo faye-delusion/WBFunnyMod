@@ -12,14 +12,19 @@ namespace WBFunnyMod
 
 			Instance = this;
 
-			Properties = new ModProperties()
-			{
+			ContentAutoloadingEnabled = true;
+			GoreAutoloadingEnabled = true;
+			MusicAutoloadingEnabled = true;
+			BackgroundAutoloadingEnabled = true;
 
-				Autoload = true,
-				AutoloadGores = true,
-				AutoloadSounds = true
+			// Properties/* tModPorter Note: Removed. Instead, assign the properties directly (ContentAutoloadingEnabled, GoreAutoloadingEnabled, MusicAutoloadingEnabled, and BackgroundAutoloadingEnabled) */ = new ModProperties()
+			// {
 
-			};
+			// 	Autoload = true,
+			// 	AutoloadGores = true,
+			// 	AutoloadSounds = true
+
+			// };
 
 		}
 

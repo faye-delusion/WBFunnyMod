@@ -13,32 +13,32 @@ namespace WBFunnyMod.Projectiles
 
         public override void SetDefaults()
         {
-            aiType = ProjectileID.Bullet;
-            projectile.Size = new Vector2(8,8);
-            projectile.friendly = true;
-            projectile.ranged = true;
-            projectile.aiStyle = 0;
-            projectile.penetrate = 5;
+            AIType = ProjectileID.Bullet;
+            Projectile.Size = new Vector2(8,8);
+            Projectile.friendly = true;
+            Projectile.DamageType = DamageClass.Ranged;
+            Projectile.aiStyle = 0;
+            Projectile.penetrate = 5;
         }
 
-        public override bool Autoload(ref string name)
+        public override bool IsLoadingEnabled(Mod mod)/* tModPorter Suggestion: If you return false for the purposes of manual loading, use the [Autoload(false)] attribute on your class instead */
         {
             return true;
         }
 
         public override void Kill(int timeLeft)
         {
-            Collision.HitTiles(projectile.position, projectile.velocity, projectile.width, projectile.height);
+            Collision.HitTiles(Projectile.position, Projectile.velocity, Projectile.width, Projectile.height);
             for (int i = 0; i < 7; i++){
 
-                Dust.NewDust(projectile.position, 4, 4, 15, 0.2f, -0.5f, 0, Color.Green);
+                Dust.NewDust(Projectile.position, 4, 4, 15, 0.2f, -0.5f, 0, Color.Green);
 
             }
         }
 
         public override void AI()
         {
-            Dust.NewDust(projectile.position + projectile.velocity, 4, 4, 15, projectile.velocity.X * -0.5f, projectile.velocity.Y * -0.5f,0, Color.Green);
+            Dust.NewDust(Projectile.position + Projectile.velocity, 4, 4, 15, Projectile.velocity.X * -0.5f, Projectile.velocity.Y * -0.5f,0, Color.Green);
         }
 
     }

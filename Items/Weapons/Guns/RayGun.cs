@@ -20,36 +20,35 @@ namespace WBFunnyMod.Items.Weapons.Guns
 
         public override void SetDefaults()
         {
-            item.Size = new Vector2(12,12);
+            Item.Size = new Vector2(12,12);
 
-            item.ranged = true;
-            item.damage = 4000;
-            item.knockBack = 0f;
-            item.crit = 5;
-            item.noMelee = true;
-            item.autoReuse = true;
+            Item.DamageType = DamageClass.Ranged;
+            Item.damage = 4000;
+            Item.knockBack = 0f;
+            Item.crit = 5;
+            Item.noMelee = true;
+            Item.autoReuse = true;
 
-            item.useTime = 25;
-            item.useAnimation = 25;
-            item.useStyle = ItemUseStyleID.HoldingOut;
+            Item.useTime = 25;
+            Item.useAnimation = 25;
+            Item.useStyle = ItemUseStyleID.Shoot;
             
-            item.shoot = ModContent.ProjectileType<RayGunProjectile>(); // placeholder, replace later
-            item.shootSpeed = 20;
-            item.useAmmo = AmmoID.None;
-            item.UseSound = SoundID.Item115;
+            Item.shoot = ModContent.ProjectileType<RayGunProjectile>(); // placeholder, replace later
+            Item.shootSpeed = 20;
+            Item.useAmmo = AmmoID.None;
+            Item.UseSound = SoundID.Item115;
 
-            item.value = Item.buyPrice(platinum: 2);
-            item.rare = ItemRarityID.Expert;
+            Item.value = Item.buyPrice(platinum: 2);
+            Item.rare = ItemRarityID.Expert;
 
         }
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
+            Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ModContent.ItemType<DirtBar>());
             recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            recipe.Register();
         }
 
     }

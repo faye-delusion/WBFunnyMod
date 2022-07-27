@@ -6,3 +6,4 @@ v0.1.1.2 - Added thrown anvil, chnilsson spear, balance changes
 v0.1.1.3 - Added ray gun
 v0.1.1.4 - balance changes
 v0.1.1.5 - more balance changes
+v0.1.1.6 - ported to 1.4

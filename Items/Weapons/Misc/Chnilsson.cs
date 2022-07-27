@@ -11,35 +11,34 @@ namespace WBFunnyMod.Items.Weapons.Misc
     {
         public override void SetDefaults()
         {
-			item.shootSpeed = 10f;
-			item.damage = 50000;
-			item.knockBack = 5f;
-			item.useStyle = ItemUseStyleID.SwingThrow;
-			item.useAnimation = 25;
-			item.useTime = 25;
-			item.width = 30;
-			item.height = 30;
-			item.maxStack = 999;
-            item.rare = ItemRarityID.Expert;
+			Item.shootSpeed = 10f;
+			Item.damage = 50000;
+			Item.knockBack = 5f;
+			Item.useStyle = ItemUseStyleID.Swing;
+			Item.useAnimation = 25;
+			Item.useTime = 25;
+			Item.width = 30;
+			Item.height = 30;
+			Item.maxStack = 999;
+            Item.rare = ItemRarityID.Expert;
 
-			item.consumable = true;
-			item.noUseGraphic = true;
-			item.noMelee = true;
-			item.autoReuse = true;
-			item.thrown = true;
+			Item.consumable = true;
+			Item.noUseGraphic = true;
+			Item.noMelee = true;
+			Item.autoReuse = true;
+			Item.DamageType = DamageClass.Throwing;
 
-			item.UseSound = SoundID.Item1;
-			item.value = Item.sellPrice(silver: 5);
-			item.shoot = ModContent.ProjectileType<ChnilssonProjectile>();
+			Item.UseSound = SoundID.Item1;
+			Item.value = Item.sellPrice(silver: 5);
+			Item.shoot = ModContent.ProjectileType<ChnilssonProjectile>();
         }
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
+            Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ModContent.ItemType<DirtBar>(), 1);
             recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            recipe.Register();
         }
 
     }

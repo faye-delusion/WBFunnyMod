@@ -1,3 +1,4 @@
+using Terraria.Audio;
 using WBFunnyMod.Items.Weapons.Misc;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -14,33 +15,33 @@ namespace WBFunnyMod.Projectiles
 		}
 
 		public override void SetDefaults() {
-			projectile.width = 16;
-			projectile.height = 16;
-			projectile.friendly = true;
-			projectile.melee = true;
-			projectile.penetrate = 3;
-			projectile.hide = true;
+			Projectile.width = 16;
+			Projectile.height = 16;
+			Projectile.friendly = true;
+			Projectile.DamageType = DamageClass.Melee;
+			Projectile.penetrate = 3;
+			Projectile.hide = true;
 		}
 
-		public override void DrawBehind(int index, List<int> drawCacheProjsBehindNPCsAndTiles, List<int> drawCacheProjsBehindNPCs, List<int> drawCacheProjsBehindProjectiles, List<int> drawCacheProjsOverWiresUI) {
-			if (projectile.ai[0] == 1f)
+		public override void DrawBehind(int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI) {
+			if (Projectile.ai[0] == 1f)
 			{
-				int npcIndex = (int)projectile.ai[1];
+				int npcIndex = (int)Projectile.ai[1];
 				if (npcIndex >= 0 && npcIndex < 200 && Main.npc[npcIndex].active) {
 					if (Main.npc[npcIndex].behindTiles) {
-						drawCacheProjsBehindNPCsAndTiles.Add(index);
+						behindNPCsAndTiles.Add(index);
 					}
 					else {
-						drawCacheProjsBehindNPCs.Add(index);
+						behindNPCs.Add(index);
 					}
 
 					return;
 				}
 			}
-			drawCacheProjsBehindProjectiles.Add(index);
+			behindProjectiles.Add(index);
 		}
 
-		public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough) {
+		public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac) {
 			width = height = 10; 
 			return true;
 		}
@@ -53,38 +54,38 @@ namespace WBFunnyMod.Projectiles
 		}
 
 		public override void Kill(int timeLeft) {
-			Main.PlaySound(SoundID.Dig, (int)projectile.position.X, (int)projectile.position.Y); 
-			Vector2 usePos = projectile.position; 
-			Vector2 rotVector = (projectile.rotation - MathHelper.ToRadians(90f)).ToRotationVector2();
+			SoundEngine.PlaySound(SoundID.Dig, Projectile.position); 
+			Vector2 usePos = Projectile.position; 
+			Vector2 rotVector = (Projectile.rotation - MathHelper.ToRadians(90f)).ToRotationVector2();
 			usePos += rotVector * 16f;
 			const int NUM_DUSTS = 20;
 
 			for (int i = 0; i < NUM_DUSTS; i++) {
-				Dust dust = Dust.NewDustDirect(usePos, projectile.width, projectile.height, 81);
-				dust.position = (dust.position + projectile.Center) / 2f;
+				Dust dust = Dust.NewDustDirect(usePos, Projectile.width, Projectile.height, 81);
+				dust.position = (dust.position + Projectile.Center) / 2f;
 				dust.velocity += rotVector * 2f;
 				dust.velocity *= 0.5f;
 				dust.noGravity = true;
 				usePos -= rotVector * 8f;
 			}
 
-			if (projectile.owner == Main.myPlayer) {
-				int item =
-				Main.rand.NextBool(18) ? Item.NewItem(projectile.getRect(), ModContent.ItemType<Chnilsson>()) : 0;
-				if (Main.netMode == NetmodeID.MultiplayerClient && item >= 0) {
-					NetMessage.SendData(MessageID.SyncItem, -1, -1, null, item, 1f);
-				}
-			}
+			// if (Projectile.owner == Main.myPlayer) {
+			// 	int item =
+			// 	Main.rand.NextBool(18) ? Item.NewItem(Projectile.getRect(), ModContent.ItemType<Chnilsson>()) : 0;
+			// 	if (Main.netMode == NetmodeID.MultiplayerClient && item >= 0) {
+			// 		NetMessage.SendData(MessageID.SyncItem, -1, -1, null, item, 1f);
+			// 	}
+			// }
 		}
 
 		public bool IsStickingToTarget {
-			get => projectile.ai[0] == 1f;
-			set => projectile.ai[0] = value ? 1f : 0f;
+			get => Projectile.ai[0] == 1f;
+			set => Projectile.ai[0] = value ? 1f : 0f;
 		}
 
 		public int TargetWhoAmI {
-			get => (int)projectile.ai[1];
-			set => projectile.ai[1] = value;
+			get => (int)Projectile.ai[1];
+			set => Projectile.ai[1] = value;
 		}
 
 		private const int MAX_STICKY_CHNILSSON = 6;
@@ -93,11 +94,11 @@ namespace WBFunnyMod.Projectiles
 		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection) {
 			IsStickingToTarget = true; 
 			TargetWhoAmI = target.whoAmI; 
-			projectile.velocity =
-				(target.Center - projectile.Center) *
+			Projectile.velocity =
+				(target.Center - Projectile.Center) *
 				0.75f; 
-			projectile.netUpdate = true; 
-			projectile.damage = 0; 
+			Projectile.netUpdate = true; 
+			Projectile.damage = 0; 
 			UpdateStickyChnilssons(target);
 		}
 
@@ -108,7 +109,7 @@ namespace WBFunnyMod.Projectiles
 			for (int i = 0; i < Main.maxProjectiles; i++)
 			{
 				Projectile currentProjectile = Main.projectile[i];
-				if (i != projectile.whoAmI && currentProjectile.active && currentProjectile.owner == Main.myPlayer && currentProjectile.type == projectile.type && currentProjectile.modProjectile is ChnilssonProjectile chnilssonProjectile && chnilssonProjectile.IsStickingToTarget  && chnilssonProjectile.TargetWhoAmI == target.whoAmI) {
+				if (i != Projectile.whoAmI && currentProjectile.active && currentProjectile.owner == Main.myPlayer && currentProjectile.type == Projectile.type && currentProjectile.ModProjectile is ChnilssonProjectile chnilssonProjectile && chnilssonProjectile.IsStickingToTarget  && chnilssonProjectile.TargetWhoAmI == target.whoAmI) {
 					_stickingChnilssons[currentChnilssonIndex++] = new Point(i, currentProjectile.timeLeft); 
 					if (currentChnilssonIndex >= _stickingChnilssons.Length)  
 						break;
@@ -136,35 +137,35 @@ namespace WBFunnyMod.Projectiles
 
 		private void UpdateAlpha()
 		{
-			if (projectile.alpha > 0) {
-				projectile.alpha -= ALPHA_REDUCTION;
+			if (Projectile.alpha > 0) {
+				Projectile.alpha -= ALPHA_REDUCTION;
 			}
-			if (projectile.alpha < 0) {
-				projectile.alpha = 0;
+			if (Projectile.alpha < 0) {
+				Projectile.alpha = 0;
 			}
 		}
 
 
 		private void StickyAI()
 		{
-			projectile.ignoreWater = true;
-			projectile.tileCollide = false; 
+			Projectile.ignoreWater = true;
+			Projectile.tileCollide = false; 
 			const int aiFactor = 15;
-			projectile.localAI[0] += 1f;
-			bool hitEffect = projectile.localAI[0] % 30f == 0f;
+			Projectile.localAI[0] += 1f;
+			bool hitEffect = Projectile.localAI[0] % 30f == 0f;
 			int projTargetIndex = (int)TargetWhoAmI;
-			if (projectile.localAI[0] >= 60 * aiFactor || projTargetIndex < 0 || projTargetIndex >= 200) { 
-				projectile.Kill();
+			if (Projectile.localAI[0] >= 60 * aiFactor || projTargetIndex < 0 || projTargetIndex >= 200) { 
+				Projectile.Kill();
 			}
 			else if (Main.npc[projTargetIndex].active && !Main.npc[projTargetIndex].dontTakeDamage) {
-				projectile.Center = Main.npc[projTargetIndex].Center - projectile.velocity * 2f;
-				projectile.gfxOffY = Main.npc[projTargetIndex].gfxOffY;
+				Projectile.Center = Main.npc[projTargetIndex].Center - Projectile.velocity * 2f;
+				Projectile.gfxOffY = Main.npc[projTargetIndex].gfxOffY;
 				if (hitEffect) {
 					Main.npc[projTargetIndex].HitEffect(0, 1.0);
 				}
 			}
 			else { 
-				projectile.Kill();
+				Projectile.Kill();
 			}
 		}
 	}

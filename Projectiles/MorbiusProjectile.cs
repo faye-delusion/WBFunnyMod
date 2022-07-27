@@ -17,18 +17,18 @@ namespace WBFunnyMod.Projectiles
 
         public override void SetDefaults()
         {
-            projectile.CloneDefaults(ProjectileID.WoodenArrowFriendly);
-            projectile.damage = 20;
-            projectile.width = 10;
-            projectile.height = 10;
-            projectile.aiStyle = 1;
-            projectile.friendly = true;
-            projectile.ranged = true;
-            aiType = ProjectileID.WoodenArrowFriendly;
+            Projectile.CloneDefaults(ProjectileID.WoodenArrowFriendly);
+            Projectile.damage = 20;
+            Projectile.width = 10;
+            Projectile.height = 10;
+            Projectile.aiStyle = 1;
+            Projectile.friendly = true;
+            Projectile.DamageType = DamageClass.Ranged;
+            AIType = ProjectileID.WoodenArrowFriendly;
 
         }
 
-        public override bool Autoload(ref string name)
+        public override bool IsLoadingEnabled(Mod mod)/* tModPorter Suggestion: If you return false for the purposes of manual loading, use the [Autoload(false)] attribute on your class instead */
         {
             return true;
         }
