@@ -4,6 +4,7 @@ Update log: v0.1.1.0 - Added morbius sword, quandale dingle blaster
 v0.1.1.1 - Added fastest pickaxe of all time, dirt bar, updated recipes to include dirt bars 
 v0.1.1.2 - Added thrown anvil, chnilsson spear, balance changes
 v0.1.1.3 - Added ray gun
-v0.1.1.4 - balance changes
-v0.1.1.5 - more balance changes
-v0.1.1.6 - ported to 1.4
+v0.1.1.4 - Balance changes
+v0.1.1.5 - More balance changes
+v0.1.1.6 - Ported to 1.4
+v0.1.1.7 - Added Ultimatum spell book, crafted using all other spell books; Added minion accessory, crafted using 10 bananas.
