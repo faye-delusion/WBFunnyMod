@@ -4,6 +4,8 @@ using Terraria.ModLoader;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 
+using WBFunnyMod.Items.Misc.CraftMaterials;
+
 namespace WBFunnyMod.Items.Misc
 {
 
@@ -32,19 +34,20 @@ namespace WBFunnyMod.Items.Misc
             
         }
 
-        // public override void AddRecipes()
-        // {
-        //     Recipe recipe = CreateRecipe();
-        //     recipe.AddIngredient(ItemID.DirtBlock, 50);
-        //     recipe.AddTile(TileID.Furnaces);
-        //     recipe.Register();
-        // }
-
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        public override void AddRecipes()
         {
+            Recipe recipe = CreateRecipe();
+            recipe.AddIngredient(ModContent.ItemType<DirtBar>(), 1);
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
+
+        public override void UseStyle(Player player, Rectangle heldItemFrame)
+        {
+            
             Main.dayTime = true;
             Main.time = 0;
-            return true;
+
         }
 
     }
