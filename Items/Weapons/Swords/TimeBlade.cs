@@ -16,7 +16,7 @@ namespace WBFunnyMod.Items.Weapons.Swords
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Time Blade");
-            Tooltip.SetDefault("Swinging alters the time.");
+            Tooltip.SetDefault("Damage changes based on the time.");
         }
 
 
@@ -51,8 +51,6 @@ namespace WBFunnyMod.Items.Weapons.Swords
             int new_damage = (int) (60 + (60 * damage_multiplier));
 
             damage = new_damage;
-
-            Main.NewText(damage_multiplier);
 
         }
 
