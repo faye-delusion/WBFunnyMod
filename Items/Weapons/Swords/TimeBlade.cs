@@ -56,10 +56,29 @@ namespace WBFunnyMod.Items.Weapons.Swords
 
         public override void AddRecipes()
         {
-            Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ModContent.ItemType<DirtBar>(), 1);
-            recipe.AddTile(TileID.Anvils);
-            recipe.Register();
+            Recipe recipe1 = CreateRecipe();
+            recipe1.AddIngredient(ItemID.MythrilBar, 10);
+            recipe1.AddIngredient(ItemID.GoldWatch, 1);
+            recipe1.AddTile(TileID.MythrilAnvil);
+            recipe1.Register();
+
+            Recipe recipe2 = CreateRecipe();
+            recipe2.AddIngredient(ItemID.MythrilBar, 10);
+            recipe2.AddIngredient(ItemID.PlatinumWatch, 1);
+            recipe2.AddTile(TileID.MythrilAnvil);
+            recipe2.Register();
+
+            Recipe recipe3 = CreateRecipe();
+            recipe3.AddIngredient(ItemID.OrichalcumBar, 10);
+            recipe3.AddIngredient(ItemID.GoldWatch, 1);
+            recipe3.AddTile(TileID.MythrilAnvil);
+            recipe3.Register();
+
+            Recipe recipe4 = CreateRecipe();
+            recipe4.AddIngredient(ItemID.OrichalcumBar, 10);
+            recipe4.AddIngredient(ItemID.PlatinumWatch, 1);
+            recipe4.AddTile(TileID.MythrilAnvil);
+            recipe4.Register();
         }
 
     }
