@@ -9,3 +9,4 @@ v0.1.1.5 - More balance changes
 v0.1.1.6 - Ported to 1.4
 v0.1.1.7 - Added Ultimatum spell book, crafted using all other spell books; Added minion accessory, crafted using 10 bananas.
 v0.1.1.8 - Added Joe Biden enemy, spawns very rarely at night.
+v0.1.1.9 - Added Good Morning and Good Night, used to alter the ingame time. Added Time Blade.
